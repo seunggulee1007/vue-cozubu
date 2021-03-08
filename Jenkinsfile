@@ -1,6 +1,6 @@
 node {
  
-    stage('Pull') {
+    stage('git source Pull') {
         git(
            url: "${GIT_URL}",
            credentialsId: "${CREDIT_ID}",
