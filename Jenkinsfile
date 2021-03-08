@@ -38,5 +38,6 @@ node {
         stage("Docker run") {
             sshCommand remote: remote, command: "docker run -p 300:300 cozubu.cf/cozubu/vue-cozubu:latest"
         }
+    }
     
 }
