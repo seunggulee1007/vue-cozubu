@@ -30,7 +30,7 @@ node {
                 // some block
                 sh "docker pull cozubu.cf/cozubu/vue-cozubu:latest"
             }
-            sh 'docker run -p 80:80 -d cozubu.cf/cozubu/vue-cozubu:latest'
+            sh 'docker run -p 3000:3000 -d cozubu.cf/cozubu/vue-cozubu:latest'
         }
     }
     
