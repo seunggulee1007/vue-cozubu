@@ -20,7 +20,7 @@ node {
     }
 
     stage("SSH Docker Image Pull") {
-        def dockerRun = 'docker run -p 80:80 cozubu.cf/cozubu/vue-cozubu:latest'
+        def dockerRun = 'docker run -p 3000:3000 cozubu.cf/cozubu/vue-cozubu:latest'
         sshagent(['dev-server']) {
             sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.3.118 ${dockerRun}"
             
