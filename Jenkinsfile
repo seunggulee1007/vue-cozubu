@@ -26,8 +26,8 @@ node {
     
     withCredentials([sshUserPrivateKey(credentialsId: 'dev-server', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'ubuntu')]) {
         def remote = [:] 
-        remote.name = "test-ssh-vm" 
-        remote.host = "ec2-xxx-xxx-xxx-xxx.ap-northeast-x.compute.amazonaws.com" 
+        remote.name = "vue-cozubu" 
+        remote.host = "13.209.86.32" 
         remote.allowAnyHosts = true 
         remote.user = ubuntu 
         remote.identityFile = identity //remote.passphrase = passphrase 
