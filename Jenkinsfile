@@ -24,13 +24,14 @@ node {
     }
 
     stage("SSH Docker Image Pull") {
-        // def dockerRun = 'docker run -p 80:80 -d -name vue-cozubu cozubu.cf/cozubu/vue-cozubu:latest'
+        def dockerRun = 'docker run -p 80:80 cozubu.cf/cozubu/vue-cozubu:latest'
         sshagent(['dev-server']) {
             withDockerRegistry(credentialsId: 'harbor_docker_repository', url: 'https://cozubu.cf') {
                 // some block
-                sh "docker pull cozubu.cf/cozubu/vue-cozubu:latest"
+                sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.3.118 docker pull cozubu.cf/cozubu/vue-cozubu:latest"
             }
-            sh 'docker run -p 3000:3000 -d cozubu.cf/cozubu/vue-cozubu:latest'
+            sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.3.118 ${dockerRun}"
+            
         }
     }
     
