@@ -28,9 +28,9 @@ node {
         sshagent(['dev-server']) {
             withDockerRegistry(credentialsId: 'harbor_docker_repository', url: 'https://cozubu.cf') {
                 // some block
-                sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.3.118 docker pull cozubu.cf/cozubu/vue-cozubu:latest"
+                sh "ssh -o StrictHostKeyChecking=no ec2-user@13.209.86.32 docker pull cozubu.cf/cozubu/vue-cozubu:latest"
             }
-            sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.3.118 ${dockerRun}"
+            sh "ssh -o StrictHostKeyChecking=no ec2-user@13.209.86.32 ${dockerRun}"
             
         }
     }
