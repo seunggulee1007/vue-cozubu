@@ -21,7 +21,7 @@ node {
 
     stage("SSH Docker Image Pull") {
         def dockerRun = 'sudo docker run -p 3000:3000 ${HARBOR_URL}/${HARBOR_PROJECT}/${IMAGE_NAME}:latest'
-        def harboLogin = 'sudo docker login https://${HARBOR_URL} -u ${HARBOR_USER} -p ${HARBOR_PWD}!'
+        def harboLogin = 'sudo docker login https://${HARBOR_URL} -u ${HARBOR_USER} -p ${HARBOR_PWD}'
         sshagent(['dev-server']) {
             sh "ssh -o StrictHostKeyChecking=no ${REMOTE_URL} ${harboLogin}"
             sh "ssh -o StrictHostKeyChecking=no ${REMOTE_URL} ${dockerRun}"
