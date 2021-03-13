@@ -4,14 +4,25 @@ import router from '@/router/index';
 import store from '@/store/index';
 
 function createInstance() {
-	const instance = axios.create({
-		baseURL: `${process.env.VUE_APP_API_URL}/api`,
-	});
-	return setInterceptors(instance);
+	return setInterceptors(
+		axios.create({
+			baseURL: `${process.env.VUE_APP_API_URL}/api`,
+		}),
+	);
 }
 
 const instance = createInstance();
 
+function doAxiosCozubu(url, method, params, config = { headers: { Apikey: 'jjeh' } }) {
+	return axios({
+		url,
+		method,
+		params,
+		config,
+	})
+		.then(successFunciton)
+		.catch(errFunction);
+}
 function createPostInstance() {
 	const instance = axios.create({
 		baseURL: `${process.env.VUE_APP_API_URL}/api`,
@@ -36,7 +47,6 @@ function doAxiosPutMultipart(url, param) {
 }
 
 function doAxiosPost(url, param) {
-	console.log(param);
 	return instance
 		.post(url, param)
 		.then(successFunciton)
@@ -62,6 +72,7 @@ function doAxios(url, method, params, config) {
 }
 
 function successFunciton(response) {
+	console.log('???');
 	// 토큰을 계속 갱신해 준다. 토큰은 20분간 유효하다.
 	if (response.headers.access_token) {
 		store.commit('setToken', response.headers.access_token);
@@ -70,6 +81,7 @@ function successFunciton(response) {
 	return response.data;
 }
 function errFunction(error) {
+	console.log('2222');
 	let res = {
 		result: -1,
 	};
@@ -84,22 +96,20 @@ function errFunction(error) {
 			store._vm.$cookie.delete(process.env.VUE_APP_AUTH_TOKEN);
 			store._vm.$cookie.delete(process.env.VUE_APP_USER_ID);
 			router.push('/login');
-			store._vm.$dialog.message.info({
-				text: res.resultMsg,
-				position: 'top',
-				type: 'Warnning',
-			});
+			// store._vm.$dialog.message.info({
+			// 	text: res.resultMsg,
+			// 	position: 'top',
+			// 	type: 'Warnning',
+			// });
 		}
 	} else if (!error.status) {
 		res.resultMsg = '네트워크 연결을 확인해 주세요';
 	} else {
 		res.data.resultMsg = error.message;
 	}
-	store._vm.$dialog.message.info({
-		text: res.resultMsg,
-		position: 'top',
-		type: 'Warnning',
+	store._vm.$dialog.message.info('Test message', {
+		position: 'top-right',
 	});
 	return res;
 }
-export { createInstance, doAxios, doAxiosPostMultipart, doAxiosPutMultipart, doAxiosPost, doAxiosPut };
+export { createInstance, doAxios, doAxiosPostMultipart, doAxiosPutMultipart, doAxiosPost, doAxiosPut, doAxiosCozubu };

@@ -36,7 +36,6 @@ export default {
 	data: () => ({
 		items: [
 			{ title: '성과분석', icon: 'mdi-view-dashboard', link: '/roi' },
-			{ title: '백테스트', icon: 'mdi-image', link: '/backtest' },
 			{ title: '설정', icon: 'mdi-help-box', link: 'setting' },
 		],
 		right: null,
