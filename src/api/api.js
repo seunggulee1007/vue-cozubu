@@ -13,11 +13,12 @@ function createInstance() {
 
 const instance = createInstance();
 
-function doAxiosCozubu(url, method, params, config = { headers: { Apikey: 'jjeh' } }) {
+function doAxiosCozubu(url, method, params, config) {
 	return axios({
 		url,
 		method,
 		params,
+		headers: { Apikey: 'jjeh' },
 		config,
 	})
 		.then(successFunciton)
@@ -72,7 +73,6 @@ function doAxios(url, method, params, config) {
 }
 
 function successFunciton(response) {
-	console.log('???');
 	// 토큰을 계속 갱신해 준다. 토큰은 20분간 유효하다.
 	if (response.headers.access_token) {
 		store.commit('setToken', response.headers.access_token);
