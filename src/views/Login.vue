@@ -9,7 +9,7 @@
 					</v-toolbar>
 					<v-card-text>
 						<v-form>
-							<v-text-field v-model="userId" label="아이디" ref="userId" type="text"></v-text-field>
+							<v-text-field v-model="username" label="아이디" ref="username" type="text"></v-text-field>
 							<v-text-field
 								v-model="password"
 								label="비밀번호"
@@ -33,16 +33,16 @@ import { mapActions } from 'vuex';
 export default {
 	data() {
 		return {
-			userId: '',
+			username: '',
 			password: '',
 		};
 	},
 	methods: {
 		...mapActions(['LOGIN']),
 		async login() {
-			if (!this.userId) {
+			if (!this.username) {
 				alert('아이디를 입력해 주세요');
-				this.$refs.userId.focus();
+				this.$refs.username.focus();
 				return;
 			} else if (!this.password) {
 				alert('비밀번호를 입력해 주세요');
@@ -50,7 +50,7 @@ export default {
 				return;
 			}
 			const params = {
-				userId: this.userId,
+				username: this.username,
 				password: this.password,
 			};
 			try {
