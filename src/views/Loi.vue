@@ -66,14 +66,14 @@ export default {
 	data() {
 		return {
 			show: false,
-			data: []
-		}
+			data: [],
+		};
 	},
 	methods: {
 		async getStrategys() {
 			let res = await getStrategy('HA');
 			this.data = res.data;
-		}
+		},
 	},
 };
 </script>
