@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { getStrategy } from '@/api/roi';
+// import { getStrategy } from '@/api/roi';
 export default {
 	created() {
 		this.getStrategys();
@@ -71,8 +71,33 @@ export default {
 	},
 	methods: {
 		async getStrategys() {
-			let res = await getStrategy('HA');
-			this.data = res.data;
+			// let res = await getStrategy('HA');
+			this.data = [
+				{
+					buy_price: 100000,
+					coin: 'ENJ',
+					coin_cnt: 47.16981132,
+					current_buy_price: 109560,
+					price: 9560,
+					roi: 9.56,
+				},
+				{
+					buy_price: 200288,
+					coin: 'ETH',
+					coin_cnt: 0.09596942,
+					current_buy_price: 194814,
+					price: -5473,
+					roi: -2.73,
+				},
+				{
+					buy_price: 200000,
+					coin: 'SAND',
+					coin_cnt: 331.12582781,
+					current_buy_price: 209723,
+					price: 9724,
+					roi: 4.86,
+				},
+			];
 		},
 	},
 };

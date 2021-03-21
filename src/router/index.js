@@ -21,9 +21,9 @@ const routes = [
 		component: () => import('@/views/Loi.vue'),
 	},
 	{
-		path: '/backtest',
-		name: '백테스트',
-		component: () => import('@/views/Backtest.vue'),
+		path: '/setting',
+		name: '설정',
+		component: () => import('@/views/Setting.vue'),
 	},
 ];
 

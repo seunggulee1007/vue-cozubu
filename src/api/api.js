@@ -96,20 +96,14 @@ function errFunction(error) {
 			store._vm.$cookie.delete(process.env.VUE_APP_AUTH_TOKEN);
 			store._vm.$cookie.delete(process.env.VUE_APP_USER_ID);
 			router.push('/login');
-			// store._vm.$dialog.message.info({
-			// 	text: res.resultMsg,
-			// 	position: 'top',
-			// 	type: 'Warnning',
-			// });
+			alert(res.resultMsg);
 		}
 	} else if (!error.status) {
 		res.resultMsg = '네트워크 연결을 확인해 주세요';
 	} else {
 		res.data.resultMsg = error.message;
 	}
-	store._vm.$dialog.message.info('Test message', {
-		position: 'top-right',
-	});
+
 	return res;
 }
 export { createInstance, doAxios, doAxiosPostMultipart, doAxiosPutMultipart, doAxiosPost, doAxiosPut, doAxiosCozubu };

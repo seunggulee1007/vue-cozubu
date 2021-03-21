@@ -58,7 +58,7 @@ export default {
 				if (res.result == 0) {
 					this.$router.push('/');
 				} else {
-					this.sAlert(res.resultMsg);
+					alert(res.resultMsg);
 				}
 			} catch (e) {
 				console.log(e);
